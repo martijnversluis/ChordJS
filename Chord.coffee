@@ -1,6 +1,6 @@
 @Chord = (->
 
-  chordRegex = /([A-G])(#|b)?([a-z0-9]*)(\/([A-G])(#|b)?)?/i
+  chordRegex = /([A-G])(#|b)?([^\/\s]*)(\/([A-G])(#|b)?)?/i
   A = 'A'.charCodeAt(0)
   G = 'G'.charCodeAt(0)
 
