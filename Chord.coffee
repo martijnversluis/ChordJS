@@ -1,4 +1,15 @@
-@Chord = (->
+((factory) ->
+  if typeof define == 'function' && define.amd
+    # AMD. Register as an anonymous module.
+    define () -> factory()
+  else if typeof module == 'object' && typeof module.exports == 'object'
+    # Node-like environment
+    module.exports = factory()
+  else
+    # Browser globals
+    factory()
+  return
+)(->
 
   chordRegex = /([A-G])(#|b)?([^\/\s]*)(\/([A-G])(#|b)?)?/i
   A = 'A'.charCodeAt(0)
@@ -54,11 +65,12 @@
       return [keyDown(base), null]
     return [base, 'b']
 
-  return class Chord
+  return class window.Chord
 
     @parse: (chordString) ->
       if parts = chordRegex.exec(chordString)
         return new Chord(parts[1], parts[2], parts[3], parts[5], parts[6])
+      return null
 
     constructor: (@base, @modifier, @suffix, @bassBase, @bassModifier) ->
 
@@ -105,4 +117,4 @@
       chordString += '/' + @bassBase + (@bassModifier || '') if @bassBase
       return chordString
 
-)(this)
+)
