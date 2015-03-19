@@ -159,4 +159,4 @@
 
 }).call(this);
 
-//# sourceMappingURL=Chord.js.map
+//# sourceMappingURL=ChordJS.js.map
