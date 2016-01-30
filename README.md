@@ -77,7 +77,39 @@ chord2.toString() # --> "D#/A#"
 // JavaScript
 var chord = Chord.parse('Eb/Bb'),
     chord2 = chord.switchModifier();
-chord2.toString(); // -> "D#/A#"
+chord2.toString(); // --> "D#/A#"
+```
+
+### Use specific modifier
+
+Set the chord to a specific modifier (# or b)
+
+```coffeescript
+# Coffeescript
+chord = Chord.parse 'Eb/Bb'
+chord2 = chord.useModifier('#')
+chord.toString() # --> "D#/A#"
+```
+
+```coffeescript
+# Coffeescript
+chord = Chord.parse 'Eb/Bb'
+chord2 = chord.useModifier('b')
+chord.toString() # --> "Eb/Bb"
+```
+
+```javascript
+// JavaScript
+var chord = Chord.parse('Eb/Bb'),
+    chord2 = chord.useModifier('#');
+chord2.toString(); // --> "D#/A#"
+```
+
+```javascript
+// JavaScript
+var chord = Chord.parse('Eb/Bb'),
+    chord2 = chord.useModifier('b');
+chord2.toString(); // --> "Eb/Bb"
 ```
 
 ### Transpose up

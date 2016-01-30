@@ -15,9 +15,9 @@
   A = 'A'.charCodeAt(0)
   G = 'G'.charCodeAt(0)
 
-  keyUp = (key) -> @keyChange(key, 1)
+  keyUp = (key) -> keyChange(key, 1)
 
-  keyDown = (key) -> @keyChange(key, -1)
+  keyDown = (key) -> keyChange(key, -1)
 
   keyChange = (key, delta) ->
     charCode = key.toUpperCase().charCodeAt(0)
@@ -25,7 +25,7 @@
     charCode = A if charCode > G
     charCode = G if charCode < A
     String.fromCharCode(charCode)
-      
+
   normalize = (base, modifier) ->
     if modifier == '#' and /^(B|E)$/.test(base)
       return [keyUp(base), null]
@@ -35,13 +35,36 @@
 
     return [base, modifier]
 
+  internalSwitchModifier = (base, modifier) ->
+    return [keyUp(base),   'b'] if modifier == '#'
+    return [keyDown(base), '#'] if modifier == 'b'
+
   switchModifier = (base, modifier) ->
     [base, modifier] = normalize(base, modifier)
 
-    if modifier
-      return [keyUp(base),   'b'] if modifier == '#'
-      return [keyDown(base), '#'] if modifier == 'b'
+    return internalSwitchModifier(base, modifier) if modifier
     return [base, modifier]
+
+  useModifier = (base, modifier, newModifier) ->
+    if modifier && modifier != newModifier
+      return internalSwitchModifier(base, modifier)
+    return [base, modifier]
+
+  transpose = (base, modifier, delta) ->
+    if delta < 0
+      repeatProcessor(base, modifier, transposeDown, Math.abs(delta))
+    if delta > 0
+      repeatProcessor(base, modifier, transposeUp, delta)
+    [base, modifier]
+
+  reoeatProcessor = (base, modifier, processor, amount) ->
+    i = 0
+
+    while i < amount
+      [base, modifier] = processor(base, modifier)
+      i++
+
+    [base, modifier]
 
   transposeUp = (base, modifier) ->
     [base, modifier] = normalize(base, modifier)
@@ -65,6 +88,16 @@
       return [keyDown(base), null]
     return [base, 'b']
 
+  processChord = (sourceChord, processor, processorArg) ->
+    chord = sourceChord.clone()
+    [chord.base, chord.modifier] = processor(sourceChord.base, sourceChord.modifier, processorArg)
+
+    if sourceChord.bassBase
+      [chord.bassBase, chord.bassModifier] = processor(
+        sourceChord.bassBase, sourceChord.bassModifier, processorArg)
+
+    return chord
+
   return class window.Chord
 
     @parse: (chordString) ->
@@ -76,41 +109,17 @@
 
     clone: -> new Chord(@base, @modifier, @suffix, @bassBase, @bassModifier)
 
-    normalize: ->
-      chord = @clone()
-      [chord.base, chord.modifier] = normalize(@base, @modifier)
+    normalize: -> processChord(this, normalize)
 
-      if @bassBase
-        [chord.bassBase, chord.bassModifier] = normalize(@bassBase, @bassModifier)
+    switchModifier: -> processChord(this, switchModifier)
 
-      return chord
+    useModifier: (newModifier) -> processChord(this, useModifier, newModifier)
 
-    switchModifier: ->
-      chord = @clone()
-      [chord.base, chord.modifier] = switchModifier(@base, @modifier)
+    transposeUp: -> processChord(this, transposeUp)
 
-      if @bassBase
-        [chord.bassBase, chord.bassModifier] = switchModifier(@bassBase, @bassModifier)
+    transposeDown: -> processChord(this, transposeDown)
 
-      return chord
-
-    transposeUp: ->
-      chord = @clone()
-      [chord.base, chord.modifier] = transposeUp(@base, @modifier)
-
-      if @bassBase
-        [chord.bassBase, chord.bassModifier] = transposeUp(@bassBase, @bassModifier)
-
-      return chord
-
-    transposeDown: ->
-      chord = @clone()
-      [chord.base, chord.modifier] = transposeDown(@base, @modifier)
-
-      if @bassBase
-        [chord.bassBase, chord.bassModifier] = transposeDown(@bassBase, @bassModifier)
-
-      return chord
+    traspose: (delta) -> processChord(this, key)
 
     toString: ->
       chordString = @base + (@modifier || '') + @suffix

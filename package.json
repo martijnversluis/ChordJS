@@ -1,24 +1,24 @@
 {
-  "name":           "ChordJS",
-  "author":         "Martijn Versluis",
-  "version":        "1.0.0",
-  "description":    "A simple JavaScript chord parsing and manipulation tool",
-  "main":           "Chord.js",
-
+  "name": "ChordJS",
+  "author": "Martijn Versluis",
+  "version": "1.0.0",
+  "description": "A simple JavaScript chord parsing and manipulation tool",
+  "main": "Chord.js",
   "repository": {
     "type": "git",
-    "url":  "https://github.com/martijnversluis/ChordJS.git"
+    "url": "https://github.com/martijnversluis/ChordJS.git"
   },
-
   "bugs": {
     "url": "https://github.com/martijnversluis/ChordJS/issues"
   },
-
   "homepage": "https://github.com/martijnversluis/ChordJS",
-
   "devDependencies": {
-    "grunt":                "^0.4.5",
-    "grunt-contrib-coffee": "^0.13.0",
-    "grunt-contrib-uglify": "^0.8.0"
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.4.3",
+    "expect": "^1.13.4",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "mocha --compilers js:babel-register"
   }
 }
