@@ -29,7 +29,7 @@ describe('parse', function() {
       expect(chord).toMatchChord('F', null, 'maj9#11', null, null);
     });
 
-    return it('parses a chord with modifier and confusing suffix', function() {
+    it('parses a chord with modifier and confusing suffix', function() {
       const chord = Chord.parse('F#maj9b11');
       expect(chord).toMatchChord('F', '#', 'maj9b11', null, null);
     });
