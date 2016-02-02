@@ -76,3 +76,17 @@ var chord = Chord.parse('Eb/Bb'),
     chord2 = chord.transposeDown();
 chord2.toString(); // -> "D/A"
 ```
+
+### Transpose
+
+```javascript
+var chord = Chord.parse('C/E'),
+    chord2 = chord.transpose(4);
+chord2.toString(); // -> "E/G#"
+```
+
+```javascript
+var chord = Chord.parse('C/E'),
+    chord2 = chord.transpose(-4);
+chord2.toString(); // -> "Ab/C"
+```
