@@ -1,4 +1,4 @@
-# ChordJS
+# ChordJS [![Build Status](https://travis-ci.org/martijnversluis/ChordJS.svg?branch=master)](https://travis-ci.org/martijnversluis/ChordJS)
 
 A simple JavaScript chord parsing and manipulation tool
 
