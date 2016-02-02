@@ -11,7 +11,7 @@ expect.extend({
 
     expect.assert(
       this.actual.modifier === modifier,
-      'expected chord modifier % to equal %s',
+      'expected chord modifier %s to equal %s',
       this.actual.modifier,
       modifier
     );

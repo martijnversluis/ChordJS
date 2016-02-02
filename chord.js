@@ -76,18 +76,18 @@
   };
 
   const transpose = function(base, modifier, delta) {
+    let [newBase, newModifier] = [base, modifier]
+
     if (delta < 0) {
-      repeatProcessor(base, modifier, transposeDown, Math.abs(delta));
+      [newBase, newModifier] = repeatProcessor(base, modifier, transposeDown, Math.abs(delta));
+    } else if (delta > 0) {
+      [newBase, newModifier] = repeatProcessor(base, modifier, transposeUp, delta);
     }
 
-    if (delta > 0) {
-      repeatProcessor(base, modifier, transposeUp, delta);
-    }
-
-    return [base, modifier];
+    return useModifier(newBase, newModifier, modifier);
   };
 
-  const reoeatProcessor = function(base, modifier, processor, amount) {
+  const repeatProcessor = function(base, modifier, processor, amount) {
     for (let i = 0; i < amount; i++) {
       [base, modifier] = processor(base, modifier)
     }
@@ -186,11 +186,11 @@
     }
 
     transpose(delta) {
-      return processChord(this, tranpose, delta);
+      return processChord(this, transpose, delta);
     }
 
     toString() {
-      let hordString = this.base + (this.modifier || '') + this.suffix;
+      let chordString = this.base + (this.modifier || '') + (this.suffix || '');
 
       if (this.bassBase) {
         chordString += '/' + this.bassBase + (this.bassModifier || '');
