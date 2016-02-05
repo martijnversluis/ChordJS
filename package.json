@@ -1,5 +1,5 @@
 {
-  "name": "ChordJS",
+  "name": "chordjs",
   "author": "Martijn Versluis",
   "version": "1.0.0",
   "description": "A simple JavaScript chord parsing and manipulation tool",

@@ -2,6 +2,18 @@
 
 A simple JavaScript chord parsing and manipulation tool
 
+## Installation
+
+`ChordJS` is on npm, to install run:
+
+```bash
+npm install chordjs
+```
+
+It is also possible to download or clone the repository. Include `ChordJS`
+using `require()` for Node environment or `define()` for AMD. For other
+environments (like browsers) you can reference `window.Chord`.
+
 ## Functionalities
 
 ### Parse
