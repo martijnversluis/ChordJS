@@ -12,7 +12,8 @@ npm install chordjs
 
 It is also possible to download or clone the repository. Include `ChordJS`
 using `require()` for Node environment or `define()` for AMD. For other
-environments (like browsers) you can reference `window.Chord`.
+environments (like browsers) you can reference `window.Chord`. You can use the
+compiled packages in the `dist/` folder.
 
 ## Functionalities
 
