@@ -10,10 +10,16 @@ A simple JavaScript chord parsing and manipulation tool
 npm install chordjs
 ```
 
-It is also possible to download or clone the repository. Include `ChordJS`
-using `require()` for Node environment or `define()` for AMD. For other
-environments (like browsers) you can reference `window.Chord`. You can use the
-compiled packages in the `dist/` folder.
+Load with `require()` or `import` (es2015):
+
+```javascript
+var Chord = require('chordjs');
+import Chord from 'chordjs';
+```
+
+It is also possible to download or clone the repository. When you load one of
+the compiled packages in the `dist/` folder, you can use `window.Chord` in the
+browser.
 
 ## Functionalities
 
