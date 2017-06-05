@@ -1,7 +1,7 @@
 {
   "name": "chordjs",
   "author": "Martijn Versluis",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple JavaScript chord parsing and manipulation tool",
   "main": "chord.js",
   "repository": {
