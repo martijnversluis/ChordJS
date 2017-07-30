@@ -6,25 +6,44 @@ describe('Chord', () => {
   describe('transpose', () => {
     context('when delta > 0', () => {
       it('tranposes up', () => {
-        const chord = new Chord('D', 'b', null, 'A', '#');
+        const chord = new Chord({
+          base: 'D',
+          modifier: 'b',
+          suffix: null,
+          bassBase: 'A',
+          bassModifier: '#'
+        });
+
         const transposedChord = chord.transpose(5);
-        // expect(`${chord} => ${transposedChord}`).toEqual('foo');
         expect(transposedChord).toMatchChord('G', 'b', null, 'D', '#');
       });
     });
 
     context('when delta < 0', () => {
       it('Does not change the chord', () => {
-        const chord = new Chord('A', '#', null, 'B', 'b');
+        const chord = new Chord({
+          base: 'A',
+          modifier: '#',
+          suffix: null,
+          bassBase: 'B',
+          bassModifier: 'b'
+        });
+
         const transposedChord = chord.transpose(-4);
-        // expect(`${chord} => ${transposedChord}`).toEqual('foo');
         expect(transposedChord).toMatchChord('F', '#', null, 'G', 'b');
       });
     });
 
     context('when delta = 0', () => {
       it('Does not change the chord', () => {
-        const chord = new Chord('B', '#', null, 'C', 'b');
+        const chord = new Chord({
+          base: 'B',
+          modifier: '#',
+          suffix: null,
+          bassBase: 'C',
+          bassModifier: 'b'
+        });
+
         const tranposedChord = chord.transpose(0);
         expect(tranposedChord).toMatchChord('B', '#', null, 'C', 'b');
       });
