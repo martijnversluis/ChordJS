@@ -21,8 +21,6 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "build-max": "browserify -t [ babelify --presets [ es2015 ] ] chord.js -o dist/chord.js",
-    "build-min": "browserify -t [ babelify --presets [ es2015 ] ] -t uglifyify chord.js -o dist/chord.min.js",
     "build": "npm run build-max && npm run build-min"
   }
 }
