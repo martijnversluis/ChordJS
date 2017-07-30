@@ -1,5 +1,5 @@
 import expect from 'expect'
-import Chord from '../chord'
+import Chord from '../src/chord'
 import './matchers'
 
 describe('Chord', () => {

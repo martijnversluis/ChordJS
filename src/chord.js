@@ -188,8 +188,4 @@ class Chord {
   }
 }
 
-if (typeof window == 'object') {
-  window.Chord = Chord;
-}
-
 export default Chord;
