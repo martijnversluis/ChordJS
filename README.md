@@ -1,4 +1,4 @@
-# ChordJS [![Build Status](https://travis-ci.org/martijnversluis/ChordJS.svg?branch=master)](https://travis-ci.org/martijnversluis/ChordJS)
+# ChordJS [![Build Status](https://travis-ci.org/martijnversluis/ChordJS.svg?branch=master)](https://travis-ci.org/martijnversluis/ChordJS) [![npm version](https://badge.fury.io/js/chordjs.svg)](https://badge.fury.io/js/chordjs)
 
 A simple JavaScript chord parsing and manipulation tool
 
