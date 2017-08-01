@@ -5,7 +5,14 @@ import './matchers'
 describe('Chord', () => {
   describe('clone', () => {
     it('assigns the right instance variables', () => {
-      const chord = new Chord('E', 'b', 'sus4', 'G', '#');
+      const chord = new Chord({
+        base: 'E',
+        modifier: 'b',
+        suffix: 'sus4',
+        bassBase: 'G',
+        bassModifier: '#'
+      });
+
       const clonedChord = chord.clone()
       expect(clonedChord).toMatchChord('E', 'b', 'sus4', 'G', '#');
     })

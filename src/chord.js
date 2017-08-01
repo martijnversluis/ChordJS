@@ -56,7 +56,7 @@ const switchModifier = function(base, modifier) {
 };
 
 const useModifier = function(base, modifier, newModifier) {
-  if (modifier && modifier != newModifier) {
+  if (modifier && modifier !== newModifier) {
     return internalSwitchModifier(base, modifier);
   }
 
@@ -102,7 +102,7 @@ const transposeUp = function(base, modifier) {
 };
 
 const transposeDown = function(base, modifier) {
-  [base, modifier] = normalize(base, modifier)
+  [base, modifier] = normalize(base, modifier);
 
   if (modifier === 'b') {
     return [keyDown(base), null];
@@ -132,16 +132,17 @@ const processChord = function(sourceChord, processor, processorArg) {
 
 class Chord {
   static parse(chordString) {
-    let parts = null;
+    const parts = chordRegex.exec(chordString);
 
-    if (parts = chordRegex.exec(chordString)) {
-      return new Chord(parts[1], parts[2], parts[3], parts[5], parts[6]);
+    if (parts) {
+      const [, base, modifier, suffix, , bassBase, bassModifier] = parts;
+      return new Chord({base, modifier, suffix, bassBase, bassModifier});
     }
 
     return null;
   }
 
-  constructor(base, modifier, suffix, bassBase, bassModifier) {
+  constructor({base, modifier, suffix, bassBase, bassModifier}) {
     this.base = base || null;
     this.modifier = modifier || null;
     this.suffix = suffix || null;
@@ -150,7 +151,8 @@ class Chord {
   }
 
   clone() {
-    return new Chord(this.base, this.modifier, this.suffix, this.bassBase, this.bassModifier);
+    const {base, modifier, suffix, bassBase, bassModifier} = this;
+    return new Chord({base, modifier, suffix, bassBase, bassModifier});
   }
 
   normalize() {
