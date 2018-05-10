@@ -1,6 +1,7 @@
-import expect from 'expect'
-import Chord from '../src/chord'
-import './matchers'
+import expect from 'expect';
+
+import Chord from '../src/chord';
+import './matchers';
 
 describe('Chord', () => {
   describe('transpose', () => {
@@ -11,7 +12,7 @@ describe('Chord', () => {
           modifier: 'b',
           suffix: null,
           bassBase: 'A',
-          bassModifier: '#'
+          bassModifier: '#',
         });
 
         const transposedChord = chord.transpose(5);
@@ -26,7 +27,7 @@ describe('Chord', () => {
           modifier: '#',
           suffix: null,
           bassBase: 'B',
-          bassModifier: 'b'
+          bassModifier: 'b',
         });
 
         const transposedChord = chord.transpose(-4);
@@ -41,7 +42,7 @@ describe('Chord', () => {
           modifier: '#',
           suffix: null,
           bassBase: 'C',
-          bassModifier: 'b'
+          bassModifier: 'b',
         });
 
         const tranposedChord = chord.transpose(0);

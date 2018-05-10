@@ -1,17 +1,9 @@
-const chordRegex = /([A-G])(#|b)?([^\/\s]*)(\/([A-G])(#|b)?)?/i;
+const chordRegex = /([A-G])(#|b)?([^/\s]*)(\/([A-G])(#|b)?)?/i;
 const A = 'A'.charCodeAt(0);
 const G = 'G'.charCodeAt(0);
 
-const keyUp = function(key) {
-  return keyChange(key, 1);
-};
-
-const keyDown = function(key) {
-  return keyChange(key, -1);
-};
-
-const keyChange = function(key, delta) {
-  var charCode;
+const keyChange = (key, delta) => {
+  let charCode;
   charCode = key.toUpperCase().charCodeAt(0);
   charCode += delta;
 
@@ -26,36 +18,45 @@ const keyChange = function(key, delta) {
   return String.fromCharCode(charCode);
 };
 
-const normalize = function(base, modifier) {
+const keyUp = key => keyChange(key, 1);
+
+const keyDown = key => keyChange(key, -1);
+
+const normalize = (base, modifier) => {
   if (modifier === '#' && /^(B|E)$/.test(base)) {
     return [keyUp(base), null];
   }
+
   if (modifier === 'b' && /^(C|F)$/.test(base)) {
     return [keyDown(base), null];
   }
+
   return [base, modifier];
 };
 
-const internalSwitchModifier = function(base, modifier) {
+const internalSwitchModifier = (base, modifier) => {
   if (modifier === '#') {
     return [keyUp(base), 'b'];
   }
+
   if (modifier === 'b') {
     return [keyDown(base), '#'];
   }
+
+  throw new Error(`Unexpected modifier ${modifier}`);
 };
 
-const switchModifier = function(base, modifier) {
-  [base, modifier] = normalize(base, modifier)
+const switchModifier = (base, modifier) => {
+  const [normalizedBase, normalizedModifier] = normalize(base, modifier);
 
   if (modifier) {
-    return internalSwitchModifier(base, modifier);
+    return internalSwitchModifier(normalizedBase, normalizedModifier);
   }
 
-  return [base, modifier];
+  return [normalizedBase, normalizedModifier];
 };
 
-const useModifier = function(base, modifier, newModifier) {
+const useModifier = (base, modifier, newModifier) => {
   if (modifier && modifier !== newModifier) {
     return internalSwitchModifier(base, modifier);
   }
@@ -63,8 +64,54 @@ const useModifier = function(base, modifier, newModifier) {
   return [base, modifier];
 };
 
-const transpose = function(base, modifier, delta) {
-  let [newBase, newModifier] = [base, modifier]
+const repeatProcessor = (base, modifier, processor, amount) => {
+  let [processedBase, processedModifier] = [base, modifier];
+
+  for (let i = 0; i < amount; i += 1) {
+    [processedBase, processedModifier] = processor(processedBase, processedModifier);
+  }
+
+  return [processedBase, processedModifier];
+};
+
+const transposeUp = (base, modifier) => {
+  const [normalizedBase, normalizedModifier] = normalize(base, modifier);
+
+  if (normalizedModifier === 'b') {
+    return [normalizedBase, null];
+  }
+
+  if (normalizedModifier === '#') {
+    return [keyUp(normalizedBase), null];
+  }
+
+  if (/^(B|E)$/.test(normalizedBase)) {
+    return [keyUp(normalizedBase), null];
+  }
+
+  return [normalizedBase, '#'];
+};
+
+const transposeDown = (base, modifier) => {
+  const [normalizedBase, normalizedModifier] = normalize(base, modifier);
+
+  if (normalizedModifier === 'b') {
+    return [keyDown(normalizedBase), null];
+  }
+
+  if (normalizedModifier === '#') {
+    return [normalizedBase, null];
+  }
+
+  if (/^(C|F)$/.test(normalizedBase)) {
+    return [keyDown(normalizedBase), null];
+  }
+
+  return [normalizedBase, 'b'];
+};
+
+const transpose = (base, modifier, delta) => {
+  let [newBase, newModifier] = [base, modifier];
 
   if (delta < 0) {
     [newBase, newModifier] = repeatProcessor(base, modifier, transposeDown, Math.abs(delta));
@@ -75,56 +122,12 @@ const transpose = function(base, modifier, delta) {
   return useModifier(newBase, newModifier, modifier);
 };
 
-const repeatProcessor = function(base, modifier, processor, amount) {
-  for (let i = 0; i < amount; i++) {
-    [base, modifier] = processor(base, modifier)
-  }
-
-  return [base, modifier];
-};
-
-const transposeUp = function(base, modifier) {
-  [base, modifier] = normalize(base, modifier)
-
-  if (modifier === 'b') {
-    return [base, null];
-  }
-
-  if (modifier === '#') {
-    return [keyUp(base), null];
-  }
-
-  if (/^(B|E)$/.test(base)) {
-    return [keyUp(base), null];
-  }
-
-  return [base, '#'];
-};
-
-const transposeDown = function(base, modifier) {
-  [base, modifier] = normalize(base, modifier);
-
-  if (modifier === 'b') {
-    return [keyDown(base), null];
-  }
-
-  if (modifier === '#') {
-    return [base, null];
-  }
-
-  if (/^(C|F)$/.test(base)) {
-    return [keyDown(base), null];
-  }
-
-  return [base, 'b'];
-};
-
-const processChord = function(sourceChord, processor, processorArg) {
-  let chord = sourceChord.clone();
-  [chord.base, chord.modifier] = processor(sourceChord.base, sourceChord.modifier, processorArg)
+const processChord = (sourceChord, processor, processorArg) => {
+  const chord = sourceChord.clone();
+  [chord.base, chord.modifier] = processor(sourceChord.base, sourceChord.modifier, processorArg);
 
   if (sourceChord.bassBase) {
-    [chord.bassBase, chord.bassModifier] = processor(sourceChord.bassBase, sourceChord.bassModifier, processorArg)
+    [chord.bassBase, chord.bassModifier] = processor(sourceChord.bassBase, sourceChord.bassModifier, processorArg);
   }
 
   return chord;
@@ -136,13 +139,13 @@ class Chord {
 
     if (parts) {
       const [, base, modifier, suffix, , bassBase, bassModifier] = parts;
-      return new Chord({base, modifier, suffix, bassBase, bassModifier});
+      return new Chord({ base, modifier, suffix, bassBase, bassModifier });
     }
 
     return null;
   }
 
-  constructor({base, modifier, suffix, bassBase, bassModifier}) {
+  constructor({ base, modifier, suffix, bassBase, bassModifier }) {
     this.base = base || null;
     this.modifier = modifier || null;
     this.suffix = suffix || null;
@@ -151,8 +154,8 @@ class Chord {
   }
 
   clone() {
-    const {base, modifier, suffix, bassBase, bassModifier} = this;
-    return new Chord({base, modifier, suffix, bassBase, bassModifier});
+    const { base, modifier, suffix, bassBase, bassModifier } = this;
+    return new Chord({ base, modifier, suffix, bassBase, bassModifier });
   }
 
   normalize() {
@@ -180,10 +183,10 @@ class Chord {
   }
 
   toString() {
-    let chordString = this.base + (this.modifier || '') + (this.suffix || '');
+    const chordString = this.base + (this.modifier || '') + (this.suffix || '');
 
     if (this.bassBase) {
-      chordString += '/' + this.bassBase + (this.bassModifier || '');
+      return `${chordString}/${this.bassBase}${this.bassModifier || ''}`;
     }
 
     return chordString;
