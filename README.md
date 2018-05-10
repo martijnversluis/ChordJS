@@ -1,4 +1,4 @@
-# ChordJS [![Build Status](https://travis-ci.org/martijnversluis/ChordJS.svg?branch=master)](https://travis-ci.org/martijnversluis/ChordJS) [![npm version](https://badge.fury.io/js/chordjs.svg)](https://badge.fury.io/js/chordjs) [![codebeat badge](https://codebeat.co/badges/17008239-5c76-49c2-8e93-ae00267939b2)](https://codebeat.co/projects/github-com-martijnversluis-chordjs-master) [![Code Climate](https://codeclimate.com/github/martijnversluis/ChordJS/badges/gpa.svg)](https://codeclimate.com/github/martijnversluis/ChordJS)
+# ChordJS [![Build Status](https://travis-ci.org/martijnversluis/ChordJS.svg?branch=master)](https://travis-ci.org/martijnversluis/ChordJS) [![npm version](https://badge.fury.io/js/chordjs.svg)](https://badge.fury.io/js/chordjs) [![Code Climate](https://codeclimate.com/github/martijnversluis/ChordJS/badges/gpa.svg)](https://codeclimate.com/github/martijnversluis/ChordJS)
 
 A simple JavaScript chord parsing and manipulation tool
 
