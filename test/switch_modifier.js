@@ -1,6 +1,7 @@
-import expect from 'expect'
-import Chord from '../src/chord'
-import './matchers'
+import expect from 'expect';
+
+import Chord from '../src/chord';
+import './matchers';
 
 describe('Chord', () => {
   describe('switchModifier', () => {
@@ -11,7 +12,7 @@ describe('Chord', () => {
           modifier: null,
           suffix: null,
           bassBase: 'F',
-          bassModifier: null
+          bassModifier: null,
         });
 
         const switchedChord = chord.switchModifier();
@@ -26,7 +27,7 @@ describe('Chord', () => {
           modifier: '#',
           suffix: null,
           bassBase: 'G',
-          bassModifier: '#'
+          bassModifier: '#',
         });
 
         const switchedChord = chord.switchModifier();
@@ -41,7 +42,7 @@ describe('Chord', () => {
           modifier: 'b',
           suffix: null,
           bassBase: 'G',
-          bassModifier: 'b'
+          bassModifier: 'b',
         });
 
         const switchedChord = chord.switchModifier();

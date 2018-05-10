@@ -1,5 +1,6 @@
-import expect from 'expect'
-import Chord from '../src/chord'
+import expect from 'expect';
+
+import Chord from '../src/chord';
 
 describe('Chord', () => {
   describe('toString', () => {
@@ -9,10 +10,10 @@ describe('Chord', () => {
         modifier: 'b',
         suffix: 'sus4',
         bassBase: 'G',
-        bassModifier: '#'
+        bassModifier: '#',
       });
 
       expect(chord.toString()).toEqual('Ebsus4/G#');
-    })
-  })
-})
+    });
+  });
+});

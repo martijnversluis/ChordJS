@@ -1,6 +1,7 @@
-import expect from 'expect'
-import Chord from '../src/chord'
-import './matchers'
+import expect from 'expect';
+
+import Chord from '../src/chord';
+import './matchers';
 
 describe('Chord', () => {
   describe('transposeUp', () => {
@@ -11,7 +12,7 @@ describe('Chord', () => {
           modifier: null,
           suffix: null,
           bassBase: 'G',
-          bassModifier: null
+          bassModifier: null,
         });
 
         const transposedChord = chord.transposeUp();
@@ -26,7 +27,7 @@ describe('Chord', () => {
           modifier: '#',
           suffix: null,
           bassBase: 'G',
-          bassModifier: '#'
+          bassModifier: '#',
         });
 
         const transposedChord = chord.transposeUp();
@@ -41,7 +42,7 @@ describe('Chord', () => {
           modifier: null,
           suffix: null,
           bassBase: 'B',
-          bassModifier: null
+          bassModifier: null,
         });
 
         const transposedChord = chord.transposeUp();
@@ -56,7 +57,7 @@ describe('Chord', () => {
           modifier: 'b',
           suffix: null,
           bassBase: 'E',
-          bassModifier: 'b'
+          bassModifier: 'b',
         });
 
         const transposedChord = chord.transposeUp();
@@ -71,7 +72,7 @@ describe('Chord', () => {
           modifier: 'b',
           suffix: null,
           bassBase: 'F',
-          bassModifier: 'b'
+          bassModifier: 'b',
         });
 
         const transposedChord = chord.transposeUp();
@@ -86,7 +87,7 @@ describe('Chord', () => {
           modifier: '#',
           suffix: null,
           bassBase: 'B',
-          bassModifier: '#'
+          bassModifier: '#',
         });
 
         const transposedChord = chord.transposeUp();

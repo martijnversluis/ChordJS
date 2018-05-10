@@ -1,40 +1,30 @@
-import expect from 'expect'
+import expect from 'expect';
+
+import Chord from '../src/chord';
+
+const chordsEqual = (actualChord, expectedChord) => (
+  actualChord.base === expectedChord.base &&
+  actualChord.modifier === expectedChord.modifier &&
+  actualChord.suffix === expectedChord.suffix &&
+  actualChord.bassBase === expectedChord.bassBase &&
+  actualChord.bassModifier === expectedChord.bassModifier
+);
 
 expect.extend({
-  toMatchChord(base, modifier, suffix, bassBase, bassModifier) {
-    expect.assert(
-      this.actual.base === base,
-      'expected chord base %s to equal %s',
-      this.actual.base,
-      base
-    );
+  toMatchChord(actualChord, base, modifier, suffix, bassBase, bassModifier) {
+    const expectedChord = new Chord({ base, modifier, suffix, bassBase, bassModifier });
+    const pass = chordsEqual(actualChord, expectedChord);
 
-    expect.assert(
-      this.actual.modifier === modifier,
-      'expected chord modifier %s to equal %s',
-      this.actual.modifier,
-      modifier
-    );
+    if (pass) {
+      return {
+        message: () => `expected ${actualChord} not to equal ${expectedChord}`,
+        pass: true,
+      };
+    }
 
-    expect.assert(
-      this.actual.suffix === suffix,
-      'expected chord suffix %s to equal %s',
-      this.actual.suffix,
-      suffix
-    );
-
-    expect.assert(
-      this.actual.bassBase === bassBase,
-      'expected chord bass base %s to equal %s',
-      this.actual.bassBase,
-      bassBase
-    );
-
-    expect.assert(
-      this.actual.bassModifier === bassModifier,
-      'expected chord bass modifier %s to equal %s',
-      this.actual.bassModifier,
-      bassModifier
-    );
-  }
-})
+    return {
+      message: () => `expected ${actualChord} to equal ${expectedChord}`,
+      pass: false,
+    };
+  },
+});

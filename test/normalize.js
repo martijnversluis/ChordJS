@@ -1,6 +1,7 @@
-import expect from 'expect'
-import Chord from '../src/chord'
-import './matchers'
+import expect from 'expect';
+
+import Chord from '../src/chord';
+import './matchers';
 
 describe('Chord', () => {
   describe('normalize', () => {
@@ -10,7 +11,7 @@ describe('Chord', () => {
         modifier: '#',
         suffix: null,
         bassBase: 'E',
-        bassModifier: '#'
+        bassModifier: '#',
       });
 
       const normalizedChord = chord.normalize();
@@ -23,7 +24,7 @@ describe('Chord', () => {
         modifier: '#',
         suffix: null,
         bassBase: 'B',
-        bassModifier: '#'
+        bassModifier: '#',
       });
 
       const normalizedChord = chord.normalize();
@@ -36,7 +37,7 @@ describe('Chord', () => {
         modifier: 'b',
         suffix: null,
         bassBase: 'C',
-        bassModifier: 'b'
+        bassModifier: 'b',
       });
 
       const normalizedChord = chord.normalize();
@@ -49,7 +50,7 @@ describe('Chord', () => {
         modifier: 'b',
         suffix: null,
         bassBase: 'F',
-        bassModifier: 'b'
+        bassModifier: 'b',
       });
 
       const normalizedChord = chord.normalize();

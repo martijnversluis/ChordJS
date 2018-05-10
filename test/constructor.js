@@ -1,6 +1,7 @@
-import expect from 'expect'
-import Chord from '../src/chord'
-import './matchers'
+import expect from 'expect';
+
+import Chord from '../src/chord';
+import './matchers';
 
 describe('Chord', () => {
   describe('constructor', () => {
@@ -10,10 +11,10 @@ describe('Chord', () => {
         modifier: 'b',
         suffix: 'sus4',
         bassBase: 'G',
-        bassModifier: '#'
+        bassModifier: '#',
       });
 
       expect(chord).toMatchChord('E', 'b', 'sus4', 'G', '#');
-    })
-  })
-})
+    });
+  });
+});

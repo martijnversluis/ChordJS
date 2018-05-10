@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+
+  "parserOptions": {
+    "sourceType": "module"
+  },
+
+  "env": {
+    "amd": true,
+    "browser": true,
+    "es6": true,
+    "mocha": true
+  },
+
+  "extends": "airbnb",
+
+  "rules": {
+    "max-len": [2, 120, 2]
+  }
+}
