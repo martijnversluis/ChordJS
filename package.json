@@ -18,7 +18,7 @@
     "babel-register": "^6.26.0",
     "eslint-plugin-mocha": "^6.1.1",
     "expect": "^22.4.3",
-    "mocha": "^5.1.1"
+    "mocha": "^6.2.1"
   },
   "scripts": {
     "test": "mocha --recursive --compilers js:babel-register",
