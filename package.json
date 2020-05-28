@@ -16,8 +16,8 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
-    "eslint-plugin-mocha": "^5.0.0",
-    "expect": "^22.4.3",
+    "eslint-plugin-mocha": "^7.0.0",
+    "expect": "^24.9.0",
     "mocha": "^5.1.1"
   },
   "scripts": {
