@@ -13,7 +13,7 @@ npm install chordjs
 Load with `require()` or `import` (es2015):
 
 ```javascript
-var Chord = require('chordjs');
+var Chord = require('chordjs').default;
 import Chord from 'chordjs';
 ```
 
