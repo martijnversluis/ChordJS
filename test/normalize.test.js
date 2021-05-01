@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import Chord from '../src/chord';
 import './matchers';
 
@@ -15,7 +13,7 @@ describe('Chord', () => {
       });
 
       const normalizedChord = chord.normalize();
-      expect(normalizedChord).toMatchChord('F', null, null, 'F', null);
+      expect(normalizedChord).toBeChord('F', null, null, 'F', null);
     });
 
     it('normalizes B#', () => {
@@ -28,7 +26,7 @@ describe('Chord', () => {
       });
 
       const normalizedChord = chord.normalize();
-      expect(normalizedChord).toMatchChord('C', null, null, 'C', null);
+      expect(normalizedChord).toBeChord('C', null, null, 'C', null);
     });
 
     it('normalizes Cb', () => {
@@ -41,7 +39,7 @@ describe('Chord', () => {
       });
 
       const normalizedChord = chord.normalize();
-      expect(normalizedChord).toMatchChord('B', null, null, 'B', null);
+      expect(normalizedChord).toBeChord('B', null, null, 'B', null);
     });
 
     it('normalizes Fb', () => {
@@ -54,7 +52,7 @@ describe('Chord', () => {
       });
 
       const normalizedChord = chord.normalize();
-      expect(normalizedChord).toMatchChord('E', null, null, 'E', null);
+      expect(normalizedChord).toBeChord('E', null, null, 'E', null);
     });
   });
 });

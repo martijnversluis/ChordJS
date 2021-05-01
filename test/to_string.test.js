@@ -1,5 +1,3 @@
-import expect from 'expect';
-
 import Chord from '../src/chord';
 
 describe('Chord', () => {

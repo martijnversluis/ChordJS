@@ -1,11 +1,9 @@
-import expect from 'expect';
-
 import Chord from '../src/chord';
 import './matchers';
 
 describe('Chord', () => {
   describe('transpose', () => {
-    context('when delta > 0', () => {
+    describe('when delta > 0', () => {
       it('tranposes up', () => {
         const chord = new Chord({
           base: 'D',
@@ -16,11 +14,11 @@ describe('Chord', () => {
         });
 
         const transposedChord = chord.transpose(5);
-        expect(transposedChord).toMatchChord('G', 'b', null, 'D', '#');
+        expect(transposedChord).toBeChord('G', 'b', null, 'D', '#');
       });
     });
 
-    context('when delta < 0', () => {
+    describe('when delta < 0', () => {
       it('Does not change the chord', () => {
         const chord = new Chord({
           base: 'A',
@@ -31,11 +29,11 @@ describe('Chord', () => {
         });
 
         const transposedChord = chord.transpose(-4);
-        expect(transposedChord).toMatchChord('F', '#', null, 'G', 'b');
+        expect(transposedChord).toBeChord('F', '#', null, 'G', 'b');
       });
     });
 
-    context('when delta = 0', () => {
+    describe('when delta = 0', () => {
       it('Does not change the chord', () => {
         const chord = new Chord({
           base: 'B',
@@ -46,7 +44,7 @@ describe('Chord', () => {
         });
 
         const tranposedChord = chord.transpose(0);
-        expect(tranposedChord).toMatchChord('B', '#', null, 'C', 'b');
+        expect(tranposedChord).toBeChord('B', '#', null, 'C', 'b');
       });
     });
   });

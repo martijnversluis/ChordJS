@@ -18,9 +18,9 @@ const keyChange = (key, delta) => {
   return String.fromCharCode(charCode);
 };
 
-const keyUp = key => keyChange(key, 1);
+const keyUp = (key) => keyChange(key, 1);
 
-const keyDown = key => keyChange(key, -1);
+const keyDown = (key) => keyChange(key, -1);
 
 const normalize = (base, modifier) => {
   if (modifier === '#' && /^(B|E)$/.test(base)) {
@@ -139,13 +139,17 @@ class Chord {
 
     if (parts) {
       const [, base, modifier, suffix, , bassBase, bassModifier] = parts;
-      return new Chord({ base, modifier, suffix, bassBase, bassModifier });
+      return new Chord({
+        base, modifier, suffix, bassBase, bassModifier,
+      });
     }
 
     return null;
   }
 
-  constructor({ base, modifier, suffix, bassBase, bassModifier }) {
+  constructor({
+    base, modifier, suffix, bassBase, bassModifier,
+  }) {
     this.base = base || null;
     this.modifier = modifier || null;
     this.suffix = suffix || null;
@@ -154,8 +158,12 @@ class Chord {
   }
 
   clone() {
-    const { base, modifier, suffix, bassBase, bassModifier } = this;
-    return new Chord({ base, modifier, suffix, bassBase, bassModifier });
+    const {
+      base, modifier, suffix, bassBase, bassModifier,
+    } = this;
+    return new Chord({
+      base, modifier, suffix, bassBase, bassModifier,
+    });
   }
 
   normalize() {

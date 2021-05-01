@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+
+  "parserOptions": {
+    "sourceType": "module"
+  },
+
+  "env": {
+    "jest": true
+  },
+
+  "extends": "airbnb-base",
+
+  "rules": {
+    "max-len": [2, 120, 2],
+    "no-underscore-dangle": "off",
+    "class-methods-use-this": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }]
+  }
+}

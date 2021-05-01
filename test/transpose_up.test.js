@@ -1,11 +1,9 @@
-import expect from 'expect';
-
 import Chord from '../src/chord';
 import './matchers';
 
 describe('Chord', () => {
   describe('transposeUp', () => {
-    context('for C, D, F, G and A', () => {
+    describe('for C, D, F, G and A', () => {
       it('returns the # version', () => {
         const chord = new Chord({
           base: 'A',
@@ -16,11 +14,11 @@ describe('Chord', () => {
         });
 
         const transposedChord = chord.transposeUp();
-        expect(transposedChord).toMatchChord('A', '#', null, 'G', '#');
+        expect(transposedChord).toBeChord('A', '#', null, 'G', '#');
       });
     });
 
-    context('for C#, D#, F#, G# and A#', () => {
+    describe('for C#, D#, F#, G# and A#', () => {
       it('returns the next note without #', () => {
         const chord = new Chord({
           base: 'A',
@@ -31,11 +29,11 @@ describe('Chord', () => {
         });
 
         const transposedChord = chord.transposeUp();
-        expect(transposedChord).toMatchChord('B', null, null, 'A', null);
+        expect(transposedChord).toBeChord('B', null, null, 'A', null);
       });
     });
 
-    context('for E and B', () => {
+    describe('for E and B', () => {
       it('returns the next note', () => {
         const chord = new Chord({
           base: 'E',
@@ -46,11 +44,11 @@ describe('Chord', () => {
         });
 
         const transposedChord = chord.transposeUp();
-        expect(transposedChord).toMatchChord('F', null, null, 'C', null);
+        expect(transposedChord).toBeChord('F', null, null, 'C', null);
       });
     });
 
-    context('for Db, Eb, Gb, Ab and Bb', () => {
+    describe('for Db, Eb, Gb, Ab and Bb', () => {
       it('returns the note without b', () => {
         const chord = new Chord({
           base: 'D',
@@ -61,11 +59,11 @@ describe('Chord', () => {
         });
 
         const transposedChord = chord.transposeUp();
-        expect(transposedChord).toMatchChord('D', null, null, 'E', null);
+        expect(transposedChord).toBeChord('D', null, null, 'E', null);
       });
     });
 
-    context('for Cb and Fb', () => {
+    describe('for Cb and Fb', () => {
       it('returns the note without b', () => {
         const chord = new Chord({
           base: 'C',
@@ -76,11 +74,11 @@ describe('Chord', () => {
         });
 
         const transposedChord = chord.transposeUp();
-        expect(transposedChord).toMatchChord('C', null, null, 'F', null);
+        expect(transposedChord).toBeChord('C', null, null, 'F', null);
       });
     });
 
-    context('for E# and B#', () => {
+    describe('for E# and B#', () => {
       it('returns the next note with #', () => {
         const chord = new Chord({
           base: 'E',
@@ -91,7 +89,7 @@ describe('Chord', () => {
         });
 
         const transposedChord = chord.transposeUp();
-        expect(transposedChord).toMatchChord('F', '#', null, 'C', '#');
+        expect(transposedChord).toBeChord('F', '#', null, 'C', '#');
       });
     });
   });
