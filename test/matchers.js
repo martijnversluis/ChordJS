@@ -18,10 +18,14 @@ function toBeClassInstanceWithProperties(received, klass, properties) {
       const errors = [];
       const type = typeof received;
 
-      if (type !== 'object') {
+      if (type !== 'object' || received === null) {
         errors.push(`it was a ${type} with value ${received}`);
       } else if (!(received instanceof klass)) {
-        errors.push(`it was a instance of ${received.constructor.name}`);
+        if (received?.constructor) {
+          errors.push(`it was a instance of ${received.constructor.name}`);
+        } else {
+          errors.push(`it was a ${typeof received}: ${received}`);
+        }
       } else {
         propertyNames.forEach((name) => {
           const actualProperty = received[name];
@@ -32,7 +36,7 @@ function toBeClassInstanceWithProperties(received, klass, properties) {
           if (actualType !== expectedType) {
             errors.push(`expected ${name} to be a ${expectedType} but it was a ${actualType}`);
           } else if (actualProperty !== expectedProperty) {
-            errors.push(`its ${name} were: "${actualProperty}" vs "${expectedProperty}"`);
+            errors.push(`its ${name} was: "${actualProperty}" vs "${expectedProperty}"`);
           }
         });
       }

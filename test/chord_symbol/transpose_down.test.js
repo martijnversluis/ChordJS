@@ -1,11 +1,11 @@
-import Chord from '../src/chord';
-import './matchers';
+import ChordSymbol from '../../src/chord_symbol';
+import '../matchers';
 
-describe('Chord', () => {
+describe('ChordSymbol', () => {
   describe('transposeUp', () => {
     describe('for D, E, G, A, B', () => {
       it('returns the b version', () => {
-        const chord = new Chord({
+        const chord = new ChordSymbol({
           base: 'A',
           modifier: null,
           suffix: null,
@@ -20,7 +20,7 @@ describe('Chord', () => {
 
     describe('for C#, D#, F#, G# and A#', () => {
       it('returns the note without #', () => {
-        const chord = new Chord({
+        const chord = new ChordSymbol({
           base: 'A',
           modifier: '#',
           suffix: null,
@@ -35,7 +35,7 @@ describe('Chord', () => {
 
     describe('for F and C', () => {
       it('returns the previous note', () => {
-        const chord = new Chord({
+        const chord = new ChordSymbol({
           base: 'F',
           modifier: null,
           suffix: null,
@@ -50,7 +50,7 @@ describe('Chord', () => {
 
     describe('for Db, Eb, Gb, Ab and Bb', () => {
       it('returns the previous note without b', () => {
-        const chord = new Chord({
+        const chord = new ChordSymbol({
           base: 'D',
           modifier: 'b',
           suffix: null,
@@ -65,7 +65,7 @@ describe('Chord', () => {
 
     describe('for B# and E#', () => {
       it('returns the note without #', () => {
-        const chord = new Chord({
+        const chord = new ChordSymbol({
           base: 'B',
           modifier: '#',
           suffix: null,
@@ -80,7 +80,7 @@ describe('Chord', () => {
 
     describe('for Fb and Cb', () => {
       it('returns the previous note with b', () => {
-        const chord = new Chord({
+        const chord = new ChordSymbol({
           base: 'F',
           modifier: 'b',
           suffix: null,

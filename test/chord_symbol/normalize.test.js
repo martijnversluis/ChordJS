@@ -1,10 +1,10 @@
-import Chord from '../src/chord';
-import './matchers';
+import ChordSymbol from '../../src/chord_symbol';
+import '../matchers';
 
-describe('Chord', () => {
+describe('ChordSymbol', () => {
   describe('normalize', () => {
     it('normalizes E#', () => {
-      const chord = new Chord({
+      const chord = new ChordSymbol({
         base: 'E',
         modifier: '#',
         suffix: null,
@@ -17,7 +17,7 @@ describe('Chord', () => {
     });
 
     it('normalizes B#', () => {
-      const chord = new Chord({
+      const chord = new ChordSymbol({
         base: 'B',
         modifier: '#',
         suffix: null,
@@ -30,7 +30,7 @@ describe('Chord', () => {
     });
 
     it('normalizes Cb', () => {
-      const chord = new Chord({
+      const chord = new ChordSymbol({
         base: 'C',
         modifier: 'b',
         suffix: null,
@@ -43,7 +43,7 @@ describe('Chord', () => {
     });
 
     it('normalizes Fb', () => {
-      const chord = new Chord({
+      const chord = new ChordSymbol({
         base: 'F',
         modifier: 'b',
         suffix: null,

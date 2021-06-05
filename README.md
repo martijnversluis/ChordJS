@@ -2,6 +2,8 @@
 
 A simple JavaScript chord parsing and manipulation tool
 
+## ⚠️ NOTE: These are the V2 docs. The V1 docs are [here](https://github.com/martijnversluis/ChordJS/tree/v1.1.1#readme).
+
 ## Installation
 
 `ChordJS` is on npm, to install run:
@@ -10,23 +12,31 @@ A simple JavaScript chord parsing and manipulation tool
 npm install chordjs
 ```
 
-Load with `require()` or `import` (es2015):
+or:
+
+```bash
+yarn add chordjs
+```
+
+Load with `import` (es2015):
 
 ```javascript
 var Chord = require('chordjs').default;
-import Chord from 'chordjs';
+import Chord, { parse } from 'chordjs';
 ```
-
-It is also possible to download or clone the repository. When you load one of
-the compiled packages in the `dist/` folder, you can use `window.Chord` in the
-browser.
 
 ## Functionalities
 
 ### Parse
 
 ```javascript
-var chord = Chord.parse('Ebsus4/Bb');
+const chord = parse('Ebsus4/Bb');
+```
+
+Parse numeric chords (Nashville system):
+
+```javascript
+const chord = parse('b1sus4/#3');
 ```
 
 ### Display with #toString
@@ -34,7 +44,7 @@ var chord = Chord.parse('Ebsus4/Bb');
 Use #toString() to convert the chord to a chord string (eg Dsus/F#)
 
 ```javascript
-var chord = Chord.parse('Ebsus4/Bb');
+const chord = parse('Ebsus4/Bb');
 chord.toString(); // --> "Ebsus4/Bb"
 ```
 
@@ -49,7 +59,7 @@ var chord2 = chord.clone();
 Normalizes keys B#, E#, Cb and Fb to C, F, B and E
 
 ```javascript
-var chord = Chord.parse('E#/B#'),
+const chord = parse('E#/B#'),
     normalizedChord = chord.normalize();
 normalizedChord.toString(); // --> "F/C"
 ```
@@ -59,8 +69,8 @@ normalizedChord.toString(); // --> "F/C"
 Convert # to b and vice versa
 
 ```javascript
-var chord = Chord.parse('Eb/Bb'),
-    chord2 = chord.switchModifier();
+const chord = parse('Eb/Bb');
+const chord2 = chord.switchModifier();
 chord2.toString(); // --> "D#/A#"
 ```
 
@@ -69,43 +79,51 @@ chord2.toString(); // --> "D#/A#"
 Set the chord to a specific modifier (# or b)
 
 ```javascript
-var chord = Chord.parse('Eb/Bb'),
-    chord2 = chord.useModifier('#');
+const chord = parse('Eb/Bb');
+const chord2 = chord.useModifier('#');
 chord2.toString(); // --> "D#/A#"
 ```
 
 ```javascript
-var chord = Chord.parse('Eb/Bb'),
-    chord2 = chord.useModifier('b');
+const chord = parse('Eb/Bb');
+const chord2 = chord.useModifier('b');
 chord2.toString(); // --> "Eb/Bb"
 ```
 
 ### Transpose up
 
 ```javascript
-var chord = Chord.parse('Eb/Bb'),
-    chord2 = chord.transposeUp();
+const chord = parse('Eb/Bb');
+const chord2 = chord.transposeUp();
 chord2.toString(); // -> "E/B"
 ```
 
 ### Transpose down
 
 ```javascript
-var chord = Chord.parse('Eb/Bb'),
-    chord2 = chord.transposeDown();
+const chord = parse('Eb/Bb');
+const chord2 = chord.transposeDown();
 chord2.toString(); // -> "D/A"
 ```
 
 ### Transpose
 
 ```javascript
-var chord = Chord.parse('C/E'),
-    chord2 = chord.transpose(4);
+const chord = parse('C/E');
+const chord2 = chord.transpose(4);
 chord2.toString(); // -> "E/G#"
 ```
 
 ```javascript
-var chord = Chord.parse('C/E'),
-    chord2 = chord.transpose(-4);
+const chord = parse('C/E');
+const chord2 = chord.transpose(-4);
 chord2.toString(); // -> "Ab/C"
+```
+
+### Convert numeric chord to chord symbol
+
+```javascript
+const numericChord = parse('2/4');
+const chordSymbol = toChordSymbol(numericChord, 'E');
+chordSymbol.toString(); // -> "F#m/A"
 ```

@@ -3,7 +3,7 @@
   "author": "Martijn Versluis",
   "version": "1.1.1",
   "description": "A simple JavaScript chord parsing and manipulation tool",
-  "main": "lib/chord.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/martijnversluis/ChordJS.git"
@@ -26,6 +26,9 @@
   },
   "scripts": {
     "jest": "jest",
+    "jest:watch": "jest --watch",
+    "jest:coverage": "jest --coverage --coverageDirectory='coverage'",
+    "jest:debug": "node --nolazy --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --colors --verbose",
     "test": "yarn lint && yarn jest",
     "lint": "node_modules/.bin/eslint --ext .js .",
     "lint:fix": "node_modules/.bin/eslint --fix --ext .js .",

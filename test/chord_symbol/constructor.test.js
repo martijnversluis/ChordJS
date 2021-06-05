@@ -1,10 +1,10 @@
-import Chord from '../src/chord';
-import './matchers';
+import ChordSymbol from '../../src/chord_symbol';
+import '../matchers';
 
-describe('Chord', () => {
+describe('ChordSymbol', () => {
   describe('constructor', () => {
     it('assigns the right instance variables', () => {
-      const chord = new Chord({
+      const chord = new ChordSymbol({
         base: 'E',
         modifier: 'b',
         suffix: 'sus4',
