@@ -140,7 +140,7 @@ export function deprecate(message) {
   try {
     throw new Error(`DEPRECATION: ${message}`);
   } catch (e) {
-    if (process && process.emitWarning) {
+    if (typeof process === 'object' && typeof process.emitWarning === 'function') {
       process.emitWarning(`${message}\n${e.stack}`);
     } else {
       console.warn(`${message}\n${e.stack}`);
