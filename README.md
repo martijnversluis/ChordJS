@@ -1,8 +1,27 @@
+# ⚠️ NOTE: ChordJS has been merged into [ChordSheetJS](https://github.com/martijnversluis/ChordSheetJS)
+
+ChordJS will not receive any more updates, although it will remain on NPM. To benefit from new features, please use ChordSheetJS instead.
+
+```bash
+npm install chordjs
+```
+
+or:
+
+```bash
+yarn add chordjs
+```
+
+```javascript
+import Chord from 'chordsheetjs';
+const chord = Chord.parse('Em');
+```
+
+-----
+
 # ChordJS [![Build Status](https://travis-ci.org/martijnversluis/ChordJS.svg?branch=master)](https://travis-ci.org/martijnversluis/ChordJS) [![npm version](https://badge.fury.io/js/chordjs.svg)](https://badge.fury.io/js/chordjs) [![Code Climate](https://codeclimate.com/github/martijnversluis/ChordJS/badges/gpa.svg)](https://codeclimate.com/github/martijnversluis/ChordJS)
 
 A simple JavaScript chord parsing and manipulation tool
-
-## ⚠️ NOTE: These are the V2 docs. The V1 docs are [here](https://github.com/martijnversluis/ChordJS/tree/v1.1.1#readme).
 
 ## Installation
 

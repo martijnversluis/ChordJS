@@ -3,6 +3,18 @@ import { deprecate } from './functions';
 
 export { parse };
 
+deprecate(`
+ChordJS has been merged into ChordSheetJS.
+ChordJS will not receive any more updates, although it will remain on NPM.
+To benefit from new features, please use ChordSheetJS instead:
+
+    npm install chordjs
+
+or
+
+    yarn add chordjs
+`.substring(1));
+
 export default {
   parse(chordString) {
     deprecate(
