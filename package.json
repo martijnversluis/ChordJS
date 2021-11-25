@@ -34,7 +34,8 @@
     "lint:fix": "node_modules/.bin/eslint --fix --ext .js .",
     "build:sources": "babel src --out-dir lib",
     "build": "yarn build:sources",
-    "prepublishOnly": "yarn install && yarn test && yarn build"
+    "prepublishOnly": "yarn install && yarn test && yarn build",
+    "postinstall": "echo \"ChordJS has been merged into ChordSheetJS. ChordJS will not receive updates. See: https://github.com/martijnversluis/ChordJS#readme\""
   },
   "dependencies": {}
 }
