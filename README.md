@@ -3,13 +3,13 @@
 ChordJS will not receive any more updates, although it will remain on NPM. To benefit from new features, please use ChordSheetJS instead.
 
 ```bash
-npm install chordjs
+npm install chordsheetjs
 ```
 
 or:
 
 ```bash
-yarn add chordjs
+yarn add chordsheetjs
 ```
 
 ```javascript
